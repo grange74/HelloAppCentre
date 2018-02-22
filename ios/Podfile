@@ -12,6 +12,8 @@ target 'HelloAppCentre' do
 
   
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
   target 'HelloAppCentreTests' do
     inherit! :search_paths
     # Pods for testing
