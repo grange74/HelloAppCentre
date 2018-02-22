@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import codePush from 'react-native-code-push';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,6 +21,8 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+
+@codePush
 export default class App extends Component<Props> {
   render() {
     return (
