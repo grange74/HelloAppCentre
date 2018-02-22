@@ -22,8 +22,7 @@ const instructions = Platform.select({
 
 type Props = {};
 
-@codePush
-export default class App extends Component<Props> {
+class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -40,6 +39,10 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+App = codePush(App);
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
