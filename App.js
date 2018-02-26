@@ -1,64 +1,32 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
+import { 
+  TouchableOpacity,
   Text,
   View
 } from 'react-native';
 import codePush from 'react-native-code-push';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
 
-type Props = {};
+class MyApp extends Component {
+    onButtonPress() {
+        codePush.sync({
+            updateDialog: true,
+            installMode: codePush.InstallMode.IMMEDIATE
+        });
+    }
 
-class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+    render() {
+        return (
+        <View>
+            <TouchableOpacity onPress={this.onButtonPress}>
+                <Text>Check for updates</Text>
+            </TouchableOpacity>
+        </View>
+        );
+    }
 }
 
-App = codePush(App);
+MyApp = codePush(codePushOptions)(MyApp);
 
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default MyApp;
