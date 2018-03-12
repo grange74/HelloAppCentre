@@ -32,6 +32,8 @@ MyApp = codePush(codePushOptions)(MyApp);
 
 export default MyApp;
 
+const retrieverColour = '#9E1E30';
+
 const styles = {
     viewStyle: {
         flex: 1,
@@ -41,7 +43,7 @@ const styles = {
     },
     textStyle: {  
       alignSelf: 'center',
-      color: '#9E1E30',
+      color: retrieverColour,
       fontSize: 16,
       fontWeight: '600',
       paddingTop: 10,
@@ -53,7 +55,7 @@ const styles = {
       backgroundColor: '#fff',
       borderRadius: 5,
       borderWidth: 1,
-      borderColor: '#9E1E30',
+      borderColor: retrieverColour,
       marginLeft: 5,
       marginRight: 5
     }
