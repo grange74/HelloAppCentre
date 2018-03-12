@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, Text, View } from 'react-native';
+import { Image, View } from 'react-native';
 import codePush from 'react-native-code-push';
+import { Button, Header } from 'react-native-elements';
 
 const codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
 
@@ -16,13 +17,22 @@ class MyApp extends Component {
     }
 
     render() {
-        const { buttonStyle, imageStyle, textStyle, viewStyle } = styles;
+        const rcColour = '#9E1E30';
         return (
-                <View style={viewStyle}>
-                    <Image style={imageStyle} source={image} />
-                    <TouchableOpacity style={buttonStyle} onPress={this.onButtonPress}>
-                        <Text style={textStyle}>Check for updates</Text>
-                    </TouchableOpacity>
+                <View style={{ flex: 1 }}>
+                    <Header
+                        centerComponent={{ text: 'Hello App Center', style: { color: '#fff', fontSize: 30 } }}
+                        backgroundColor={rcColour}
+                    />
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                        <Image source={image} />
+                        <Button 
+                            large
+                            title='Check for updates'
+                            onPress={this.onButtonPress}
+                            backgroundColor={rcColour}
+                        />
+                    </View>
                 </View>
         );
     }
@@ -31,32 +41,3 @@ class MyApp extends Component {
 MyApp = codePush(codePushOptions)(MyApp);
 
 export default MyApp;
-
-const retrieverColour = '#9E1E30';
-
-const styles = {
-    viewStyle: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    imageStyle: {
-    },
-    textStyle: {  
-      alignSelf: 'center',
-      color: retrieverColour,
-      fontSize: 16,
-      fontWeight: '600',
-      paddingTop: 10,
-      paddingBottom: 10,
-      paddingLeft: 10,
-      paddingRight: 10,
-    },
-    buttonStyle: {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      borderWidth: 1,
-      borderColor: retrieverColour,
-      marginLeft: 5,
-      marginRight: 5
-    }
-  };
