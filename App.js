@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { 
-  TouchableOpacity,
-  Text,
-  View
-} from 'react-native';
+import { Image, TouchableOpacity, Text, View } from 'react-native';
 import codePush from 'react-native-code-push';
-import { Provider as PaperProvider } from 'react-native-paper';
 
 const codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
 
+const image = require('./images/qa.png');
+
 class MyApp extends Component {
+
     onButtonPress() {
         codePush.sync({
             updateDialog: true,
@@ -18,15 +16,14 @@ class MyApp extends Component {
     }
 
     render() {
+        const { buttonStyle, imageStyle, textStyle, viewStyle } = styles;
         return (
-            <PaperProvider>
-                <View>
-                    <Title>Hello App Center</Title>
-                    <TouchableOpacity onPress={this.onButtonPress}>
-                        <Text>Check for updates</Text>
+                <View style={viewStyle}>
+                    <Image style={imageStyle} source={image} />
+                    <TouchableOpacity style={buttonStyle} onPress={this.onButtonPress}>
+                        <Text style={textStyle}>Check for updates</Text>
                     </TouchableOpacity>
                 </View>
-            </PaperProvider>
         );
     }
 }
@@ -34,3 +31,30 @@ class MyApp extends Component {
 MyApp = codePush(codePushOptions)(MyApp);
 
 export default MyApp;
+
+const styles = {
+    viewStyle: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    imageStyle: {
+    },
+    textStyle: {  
+      alignSelf: 'center',
+      color: '#9E1E30',
+      fontSize: 16,
+      fontWeight: '600',
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
+    buttonStyle: {
+      backgroundColor: '#fff',
+      borderRadius: 5,
+      borderWidth: 1,
+      borderColor: '#9E1E30',
+      marginLeft: 5,
+      marginRight: 5
+    }
+  };
